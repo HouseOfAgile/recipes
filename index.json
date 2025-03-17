@@ -1,0 +1,9 @@
+{
+    "packages": {
+        "houseofagile/hoa-companion": {
+            "0.1": {
+                "manifest": "houseofagile/hoa-companion/0.1/manifest.json"
+            }
+        }
+    }
+}
