@@ -6,6 +6,9 @@
             },
             "0.2": {
                 "manifest": "houseofagile/hoa-companion/0.2/manifest.json"
+            },
+            "0.3": {
+                "manifest": "houseofagile/hoa-companion/0.3/manifest.json"
             }
         }
     }
