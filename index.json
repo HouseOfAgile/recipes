@@ -4,8 +4,8 @@
             "dev-main": {
                 "manifest": "houseofagile/hoa-companion/dev-main/manifest.json"
             },
-            "0.1": {
-                "manifest": "houseofagile/hoa-companion/0.1/manifest.json"
+            "0.2": {
+                "manifest": "houseofagile/hoa-companion/0.2/manifest.json"
             }
         }
     }

@@ -7,6 +7,7 @@
   "env": {
   },
   "post-install-output": [
+    "DEBUG: Recipe for hoa-companion dev-main applied successfully!",
     "Your Docker & scripts have been installed.",
     "Run 'make start ENV=dev' to spin things up!"
   ]
