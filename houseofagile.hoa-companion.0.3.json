@@ -9,7 +9,7 @@
           },
           "env": {},
           "post-install-output": [
-            "DEBUG: Recipe for hoa-companion 0.3 applied successfully!",
+            "DEBUG: Recipe for hoa-companion 0.3.1 applied successfully!",
             "Your Docker & scripts have been installed.",
             "Run 'make start ENV=dev' to spin things up!"
           ]
@@ -80,7 +80,7 @@
               "executable": false
           }
         },
-        "ref": "b2b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b1"
+        "ref": "c4b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b1"
       }
     }
   }
