@@ -1,15 +1,15 @@
 {
-    "packages": {
-        "houseofagile/hoa-companion": {
-            "dev-main": {
-                "manifest": "houseofagile/hoa-companion/dev-main/manifest.json"
-            },
-            "0.2": {
-                "manifest": "houseofagile/hoa-companion/0.2/manifest.json"
-            },
-            "0.3": {
-                "manifest": "houseofagile/hoa-companion/0.3/manifest.json"
-            }
-        }
+    "recipes": {
+        "houseofagile/hoa-companion": [
+            "0.2",
+            "0.3"
+        ]
+    },
+    "branch": "main",
+    "is_contrib": true,
+    "_links": {
+        "repository": "github.com/HouseOfAgile/recipes",
+        "origin_template": "{package}:{version}@github.com/HouseOfAgile/recipes:main",
+        "recipe_template": "https://api.github.com/repos/HouseOfAgile/recipes/contents/{package_dotted}.{version}.json"
     }
 }
