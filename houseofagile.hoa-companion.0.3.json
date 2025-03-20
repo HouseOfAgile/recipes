@@ -17,7 +17,7 @@
         "files": {
           "Makefile": {
             "contents": [
-                "ENV ?= dev",
+                "ENV ?= prod",
                 "",
                 "ifneq ($(ENV),$(filter $(ENV),dev staging prod ))",
                 "$(error Env \"$(ENV)\" is not valid)",
