@@ -6,12 +6,6 @@
                     "docker-env/": "%CONFIG_DIR%/"
                 },
                 "env": {},
-                "composer-scripts": {
-                    "copy-hoa-scripts": {
-                        "cp -r vendor/houseofagile/hoa-companion/docker/ docker/": "script",
-                        "cp -r vendor/houseofagile/hoa-companion/scripts/ scripts/": "script"
-                    }
-                },
                 "post-install-output": [
                     "HoA Companion Docker & scripts have been installed.",
                     "Run 'make start ENV=dev' to spin things up!"
