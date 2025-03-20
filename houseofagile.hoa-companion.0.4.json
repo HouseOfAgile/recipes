@@ -1,0 +1,23 @@
+{
+    "manifests": {
+        "houseofagile/hoa-companion": {
+            "manifest": {
+                "copy-from-recipe": {
+                    "docker-env/": "%CONFIG_DIR%/"
+                },
+                "env": {},
+                "composer-scripts": {
+                    "copy-hoa-scripts": [
+                        "cp -r vendor/houseofagile/hoa-companion/docker/ docker/",
+                        "cp -r vendor/houseofagile/hoa-companion/scripts/ scripts/"
+                    ]
+                },
+                "post-install-output": [
+                    "HoA Companion Docker & scripts have been installed.",
+                    "Run 'make start ENV=dev' to spin things up!"
+                ]
+            },
+            "ref": "d5b2c52435f6a7b8c9d0e1f2a3b4c5d6e7f8a9b1"
+        }
+    }
+}
