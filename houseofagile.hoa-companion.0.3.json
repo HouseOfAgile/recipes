@@ -17,7 +17,7 @@
         "files": {
           "Makefile": {
             "contents": [
-                "ENV ?= prod",
+                "ENV ?= dev",
                 "",
                 "ifneq ($(ENV),$(filter $(ENV),dev staging prod ))",
                 "$(error Env \"$(ENV)\" is not valid)",
@@ -38,6 +38,10 @@
                 "# Set the environment file dynamically based on ENV",
                 "DOCKER_ENV_FILE=docker/env/dockerenv.$(ENV)",
                 "COMMON_DOCKER_COMMAND = TAG=${TAG} ${DOCKER_COMPOSE_CMD} -f docker/docker-compose.yml -p $(PROJECT_NAME)_$(ENV)",
+                "",
+                "# Print the value of DOCKER_ENV_FILE",
+                "print-env-file:",
+                "    $(info DOCKER_ENV_FILE is $(DOCKER_ENV_FILE))",
                 "",
                 "common-build:",
                 "    ${DOCKER_COMPOSE_CMD} -f docker/docker-compose.common.yml --env-file ${DOCKER_ENV_FILE} -p ${PROJECT_NAME} build --no-cache",
