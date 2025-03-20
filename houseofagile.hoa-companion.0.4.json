@@ -7,17 +7,17 @@
                 },
                 "env": {},
                 "composer-scripts": {
-                    "copy-hoa-scripts": [
-                        "cp -r vendor/houseofagile/hoa-companion/docker/ docker/",
-                        "cp -r vendor/houseofagile/hoa-companion/scripts/ scripts/"
-                    ]
+                    "copy-hoa-scripts": {
+                        "cp -r vendor/houseofagile/hoa-companion/docker/ docker/": "script",
+                        "cp -r vendor/houseofagile/hoa-companion/scripts/ scripts/": "script"
+                    }
                 },
                 "post-install-output": [
                     "HoA Companion Docker & scripts have been installed.",
                     "Run 'make start ENV=dev' to spin things up!"
                 ]
             },
-            "ref": "d5b2c52435f6a7b8c9d0e1f2a3b4c5d6e7f8a9b1"
+            "ref": "d5b2c52435f6a7b8c9d0e1f453b4c5d6e7f8a9b1"
         }
     }
 }
