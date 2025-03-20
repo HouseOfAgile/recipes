@@ -1,20 +1,86 @@
 {
     "manifests": {
-        "houseofagile/hoa-companion": {
-            "manifest": {
-                "copy-from-recipe": {
-                    "docker/": "docker/",
-                    "scripts/": "scripts/",
-                    "Makefile": "Makefile"
-                },
-                "env": {},
-                "post-install-output": [
-                    "DEBUG: Recipe for hoa-companion 0.3 applied successfully!",
-                    "Your Docker & scripts have been installed.",
-                    "Run 'make start ENV=dev' to spin things up!"
-                ]
-            },
-            "ref": "b2b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0"
-        }
+      "houseofagile/hoa-companion": {
+        "manifest": {
+          "copy-from-recipe": {
+            "docker/": "docker/",
+            "scripts/": "scripts/",
+            "Makefile": "Makefile"
+          },
+          "env": {},
+          "post-install-output": [
+            "DEBUG: Recipe for hoa-companion 0.3 applied successfully!",
+            "Your Docker & scripts have been installed.",
+            "Run 'make start ENV=dev' to spin things up!"
+          ]
+        },
+        "files": {
+          "Makefile": {
+            "contents": [
+                "ENV ?= dev",
+                "",
+                "ifneq ($(ENV),$(filter $(ENV),dev staging prod ))",
+                "$(error Env \"$(ENV)\" is not valid)",
+                "endif",
+                "",
+                "# Include the environment-specific file to export variables for Makefile use",
+                "include docker/env/dockerenv.$(ENV)",
+                "export",
+                "",
+                "PROJECT_NAME=$(APP_NAME)",
+                "",
+                "# Detect if docker-compose or docker compose is available",
+                "DOCKER_COMPOSE_CMD=$(shell if command -v docker-compose > /dev/null 2>&1; then echo \"docker-compose\"; elif docker compose version > /dev/null 2>&1; then echo \"docker compose\"; else echo \"none\"; fi)",
+                "ifeq ($(DOCKER_COMPOSE_CMD),none)",
+                "$(error \"Neither docker-compose nor docker compose is available\")",
+                "endif",
+                "",
+                "# Set the environment file dynamically based on ENV",
+                "DOCKER_ENV_FILE=docker/env/dockerenv.$(ENV)",
+                "COMMON_DOCKER_COMMAND = TAG=${TAG} ${DOCKER_COMPOSE_CMD} -f docker/docker-compose.yml -p $(PROJECT_NAME)_$(ENV)",
+                "",
+                "common-build:",
+                "    ${DOCKER_COMPOSE_CMD} -f docker/docker-compose.common.yml --env-file ${DOCKER_ENV_FILE} -p ${PROJECT_NAME} build --no-cache",
+                "",
+                "common-up:",
+                "    ${DOCKER_COMPOSE_CMD} -f docker/docker-compose.common.yml --env-file ${DOCKER_ENV_FILE} -p ${PROJECT_NAME} up -d",
+                "",
+                "build-no-cache:",
+                "    ${COMMON_DOCKER_COMMAND} -f docker/docker-compose.$(ENV).yml build --no-cache",
+                "",
+                "build:",
+                "    ${COMMON_DOCKER_COMMAND} -f docker/docker-compose.$(ENV).yml build",
+                "",
+                "start: common-up",
+                "    ${COMMON_DOCKER_COMMAND} -f docker/docker-compose.$(ENV).yml up -d",
+                "",
+                "start-recreate: common-up",
+                "    ${COMMON_DOCKER_COMMAND} -f docker/docker-compose.$(ENV).yml up -d --force-recreate",
+                "",
+                "stop:",
+                "    ${COMMON_DOCKER_COMMAND} -f docker/docker-compose.$(ENV).yml stop",
+                "",
+                "restart: stop start",
+                "",
+                "rebuild: stop build start",
+                "",
+                "rm:",
+                "    ${COMMON_DOCKER_COMMAND} -f docker/docker-compose.$(ENV).yml rm",
+                "",
+                "    git pull",
+                "",
+                "deploy: git-pull stop build start",
+                "",
+                "COMPOSE_VERSION := $(shell ${DOCKER_COMPOSE_CMD} --version 2>/dev/null | grep -oE \"v?([0-9]+)\\\\.([0-9]+)\\\\.([0-9]+)\\\" | head -1 | cut -d '.' -f 1)",
+                "CONTAINER_NAME_SUFFIX := $(if $(findstring 1,$(COMPOSE_VERSION)),_app_1,-app-1)",
+                "post-depl:",
+                "    @docker exec -itu developer $(PROJECT_NAME)_$(ENV)$(CONTAINER_NAME_SUFFIX) bash -c './scripts/_instance_config.sh'",
+                ""                
+              ]
+          }
+        },
+        "ref": "b2b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0"
+      }
     }
-}
+  }
+  
