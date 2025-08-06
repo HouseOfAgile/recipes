@@ -1,0 +1,36 @@
+{
+    "copy-from-recipe": {
+        "Makefile": "Makefile",
+        ".env.dev": ".env.dev",
+        ".env.prod": ".env.prod"
+    },
+    "gitignore": [
+        ".env.dev",
+        ".env.prod",
+        ".env.staging"
+    ],
+    "post-install-output": [
+        "<bg=blue;fg=white>                            </>",
+        "<bg=blue;fg=white> HoA Companion Configured! </>",
+        "<bg=blue;fg=white>                            </>",
+        "",
+        "  ✅ Makefile configured to use vendor-based hoa-companion paths",
+        "  ✅ Environment files (.env.dev, .env.prod) created with hoa-companion blocks", 
+        "  ✅ No local file copying - everything uses vendor/ paths",
+        "  ✅ Composer commands run inside app container for proper dependency management",
+        "",
+        "<comment>Next steps:</comment>",
+        "  1. Customize APP_NAME and domains in .env.dev and .env.prod",
+        "  2. Run <info>make start</info> to spin up your Docker stack",
+        "  3. Run <info>make composer-install</info> to install dependencies",
+        "  4. Run <info>make sh</info> to enter the container",
+        "",
+        "<comment>Key improvements in this version:</comment>",
+        "  • Vendor-based integration (no local docker/, scripts/ copying)",
+        "  • Clean environment variable management with hoa-companion blocks",
+        "  • Composer commands run inside app container as recommended",
+        "  • Automatic detection of frankenphp vs standard Docker stack",
+        "",
+        "  📖 Documentation: https://github.com/houseofagile/hoa-companion"
+    ]
+}
